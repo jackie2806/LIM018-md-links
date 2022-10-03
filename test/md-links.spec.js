@@ -1,3 +1,5 @@
+const { it } = require('jest-circus');
+const { describe } = require('yargs');
 const mdLinks = require('../');
 
 
@@ -8,3 +10,9 @@ describe('mdLinks', () => {
   });
 
 });
+
+describe('verifyRoute', () => {
+  it('Shoud verify the route', () => {
+    //expect función 
+  })
+})
