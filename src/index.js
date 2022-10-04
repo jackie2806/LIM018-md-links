@@ -11,10 +11,14 @@ const path = require('path');
 
 // 1. Función que verifica si la ruta existe
 const verifyRoute = (route) => {
-  console.log('La ruta existe?', fs.existsSync(route));
-  return fs.existsSync(route)
+  if( fs.existsSync(route)){
+    console.log('La ruta existe?', fs.existsSync(route));
+    return fs.existsSync(route)
+  } else {
+    console.log('La ruta no existe');
+  }
+ 
 }
-console.log(typeof verifyRoute)
 verifyRoute('./tools/reading.word')
 
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
@@ -30,10 +34,13 @@ const typeRoute = (route) => {
 }
 typeRoute('./tools/reading.word');
 
-// 3. Función que verifica si la ruta contiene un ARCHIVO y lee la extensión del mismo
+// 3. Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
 const readFile = (route) => {
+
   if (path.extname(route)){
     console.log('La ruta contiene un archivo: ', path.extname(route))
+    return path.extname(route);
+    
   } else {
     console.log('Esta ruta no contiene ningún archivo')
   }
@@ -42,6 +49,14 @@ const readFile = (route) => {
 readFile('./tools/reading.word')
 
 
-module.exports = () => {
-  verifyRoute
-};
+module.exports = {
+  verifyRoute,
+  typeRoute,
+  readFile,
+}; 
+
+/* module.exports = () =>{
+  verifyRoute,
+  typeRoute
+} */
+// README expresiones regulares 

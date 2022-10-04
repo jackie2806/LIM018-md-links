@@ -1,22 +1,45 @@
-const { verifyRoute }  = require('../src/index.js');
-console.log(verifyRoute);
-describe('Verify if the route exists', () => {
-  it('Should verify the path', () => {
-    expect(typeof verifyRoute).toBe('function');
+const fn = require('../src/index.js');
+// const { verifyRoute, typeRoute } = require('../src/index.js');
+/* const verifyRoute = require('../src/index.js');
+const typeRoute = require('../src/index.js'); */
+// ------ TEST 1
+describe('Function that verify if the route exists', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.verifyRoute).toBe('function');
+      //expect(typeof verifyRoute).toBe('function');
   });
-})
-
-/* 
-describe('mdLinks', () => {
-
-  it('should...', () => {
-    console.log('FIX ME!');
-  });
-
+  it('Should verify if the route exists', () => {
+    const route = './tools/reading.word';
+    expect(fn.verifyRoute(route)).toBe(true);
+  })
+ 
 });
 
-describe('verifyRoute', () => {
-  it('Shoud verify the route', () => {
-    //expect función 
+// ----- TEST 2
+
+describe('Function that verify if the route is absolute', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.typeRoute).toBe('function');    
+  });
+  it('Should verify if the route is absolute', () => {
+    const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
+    expect(fn.typeRoute(route)).toBe(true);
   })
-}) */
+});
+
+// ----- TEST 3
+
+describe('Function that verify if the if the route contains a file', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.readFile).toBe('function');
+  });
+  it('Should verify if the route has a file and shows it', () => {
+    const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
+    const path = require('path');
+    console.log(fn.readFile(route));
+    expect(fn.readFile(route)).toEqual(path.extname(route));
+  })
+})
+
+
+
