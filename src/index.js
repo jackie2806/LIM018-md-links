@@ -1,7 +1,6 @@
 
 const prueba = './README.md';
 // console.log(prueba);
-
 // en index.js irá la función mdLink
 // Test: usar espías 
 //path fs import 
@@ -15,6 +14,7 @@ const verifyRoute = (route) => {
   console.log('La ruta existe?', fs.existsSync(route));
   return fs.existsSync(route)
 }
+console.log(typeof verifyRoute)
 verifyRoute('./tools/reading.word')
 
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
@@ -30,7 +30,7 @@ const typeRoute = (route) => {
 }
 typeRoute('./tools/reading.word');
 
-// 3. Función que verifica si la ruta contiene un ARCHIVO y lo lee
+// 3. Función que verifica si la ruta contiene un ARCHIVO y lee la extensión del mismo
 const readFile = (route) => {
   if (path.extname(route)){
     console.log('La ruta contiene un archivo: ', path.extname(route))
@@ -43,4 +43,5 @@ readFile('./tools/reading.word')
 
 
 module.exports = () => {
+  verifyRoute
 };
