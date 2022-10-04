@@ -17,21 +17,29 @@ const verifyRoute = (route) => {
 }
 verifyRoute('./tools/reading.word')
 
-// 2. Función que verifica el tipo de ruta. Si no es absoluta, la covierte a absoluta
+// 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
 const typeRoute = (route) => {
-  console.log('Es una ruta absoluta?', path.isAbsolute(route))
+  
   if(path.isAbsolute(route)){
+    console.log('Es una ruta absoluta?', path.isAbsolute(route))
     return path.isAbsolute(route)
   } else {
-    console.log('Conversión de la ruta a absoluta: ', path.resolve(route))
+    console.log('No es una ruta a absoluta. Por tanto, la convertiremos en asboluta: ', path.resolve(route))
     return path.resolve(route);
   }
 }
 typeRoute('./tools/reading.word');
 
-// 3. Función que lee la extensión del archivo
-
-
+// 3. Función que verifica si la ruta contiene un ARCHIVO y lo lee
+const readFile = (route) => {
+  if (path.extname(route)){
+    console.log('La ruta contiene un archivo: ', path.extname(route))
+  } else {
+    console.log('Esta ruta no contiene ningún archivo')
+  }
+  
+}
+readFile('./tools/reading.word')
 
 
 module.exports = () => {
