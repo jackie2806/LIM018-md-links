@@ -1,4 +1,4 @@
-const fn = require('../src/index.js');
+const fn = require('../src/small-functions.js');
 // const { verifyRoute, typeRoute } = require('../src/index.js');
 /* const verifyRoute = require('../src/index.js');
 const typeRoute = require('../src/index.js'); */

@@ -40,8 +40,9 @@ const verifyDirectory = (absoluteRoute) => {
     return console.log('Esta ruta no contiene un directorio');
   }
 }
-verifyDirectory('D:\\Lab\\LIM018-md-links\\tools');
-// 3. 2Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
+verifyDirectory('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
+// 3. 2Leer el directorio en búsqueda de un archivo
+// 3. 3Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
 const readFile = (route) => {
 
   if (path.extname(route)){
@@ -54,7 +55,7 @@ const readFile = (route) => {
   
 }
 readFile('./tools/reading.word')
-
+//console.log(__dirname);
 
 module.exports = {
   verifyRoute,
