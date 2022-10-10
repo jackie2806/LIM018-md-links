@@ -31,13 +31,13 @@ describe('Function that verify if the route is absolute', () => {
 
 describe('Function that verify if the if the route contains a file', () => {
   it('Should be a function', () => {
-    expect(typeof fn.readFile).toBe('function');
+    expect(typeof fn.verifyTypeOfExtension).toBe('function');
   });
   it('Should verify if the route has a file and shows it', () => {
     const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
-    const path = require('path');
-    console.log(fn.readFile(route));
-    expect(fn.readFile(route)).toEqual(path.extname(route));
+   // const path = require('path');
+    console.log(fn.verifyTypeOfExtension(route));
+    expect(fn.verifyTypeOfExtension(route)).toBe(false);
   })
 })
 

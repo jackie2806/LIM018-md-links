@@ -8,6 +8,7 @@ const prueba = './README.md';
 const fs = require('fs');
 const path = require('path');
 
+
 // 1. Función que verifica si la ruta existe
 const verifyRoute = (route) => {
   if( fs.existsSync(route)){
@@ -32,35 +33,70 @@ const typeRoute = (route) => {
 }
 typeRoute('./tools/reading.word');
 // 3. 1Función que verifica si la ruta es un directorio
-const verifyDirectory = (absoluteRoute) => {
+const verifyDirectory = (absolutePath) => {
   //console.log(fs.statSync(absoluteRoute).isDirectory()); // cuando no existe la ruta arroja un error
-   if(fs.statSync(absoluteRoute).isDirectory()){
-    return  console.log('Esta ruta contiene un directorio', fs.statSync(absoluteRoute).isDirectory());
+   if(fs.statSync(absolutePath).isDirectory()){
+    return  console.log('Esta ruta contiene un directorio', fs.statSync(absolutePath).isDirectory());
   } else {
     return console.log('Esta ruta no contiene un directorio');
   }
 }
 verifyDirectory('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
 // 3. 2Leer el directorio en búsqueda de un archivo
+
 // 3. 3Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
-const readFile = (route) => {
+const verifyTypeOfExtension = (absolutePath) => {
 
-  if (path.extname(route)){
-    console.log('La ruta contiene un archivo con extensión:', path.extname(route))
-    return path.extname(route);
-    
+  if(path.extname(absolutePath)=='.md'){
+    console.log('Este archivo contiene un archivo .md')
+    return true;
   } else {
-    console.log('Esta ruta no contiene ningún archivo')
-  }
-  
-}
-readFile('./tools/reading.word')
-//console.log(__dirname);
+    console.log('Este archivo no contiene un archivo .md');
+    return false;
 
+  }
+}
+verifyTypeOfExtension('./tools/reading.word')
+//console.log(__dirname);
+// 4. Leer los archivos .md y retornar un array de objetos
+const readFiles = (absolutePath) => {
+  //console.log(fs.readFileSync(absolutePath,'utf-8'))
+  const arrLinks = [];
+  if(absolutePath !== ''){  
+    const content = fs.readFileSync(absolutePath,'utf-8');
+    console.log(content)
+    //const arrPaths = content.match(/es*/g);
+    //const arrPaths = content.match(/\[.*\]\(.*\)/g)
+    const arrPaths = content.match(/\[.*\]\(.*\)/g);
+    console.log(arrPaths)
+    if(absolutePath !=='' && arrPaths !== null){
+      arrPaths.map((url) => {
+        const text = url.slice(1, url.indexOf(']'));
+        const href = url.slice(url.indexOf(']')+2, url.indexOf(')'));
+        const file = absolutePath;
+        const obj = {
+          href,
+          text,
+          file,
+        }
+        arrLinks.push(obj);
+      });
+    }
+   
+  }
+  console.log(arrLinks)
+  return arrLinks;
+}
+//readFiles('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
+readFiles('D:\\Lab\\LIM018-md-links\\tools\\tool.md');
+//readFiles('./tools/tool.md')
+
+// console.log(readFiles('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
 module.exports = {
   verifyRoute,
   typeRoute,
-  readFile,
+  verifyTypeOfExtension,
+
 }; 
 
 /* module.exports = () =>{
