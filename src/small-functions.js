@@ -41,7 +41,8 @@ const verifyDirectory = (absolutePath) => {
     return console.log('Esta ruta no contiene un directorio');
   }
 }
-verifyDirectory('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
+//verifyDirectory('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
+verifyDirectory('D:/Lab/LIM018-md-links/tools/tools-files');
 // 3. 2Leer el directorio en búsqueda de un archivo
 
 // 3. 3Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
@@ -58,21 +59,26 @@ const verifyTypeOfExtension = (absolutePath) => {
 }
 verifyTypeOfExtension('./tools/reading.word')
 //console.log(__dirname);
-// 4. Leer los archivos .md y retornar un array de objetos
+
+// 4. Leer los archivos .md y retornar un array de objetos¨
+/**
+ * This function gets a file path, extract the content and look for links
+ * @param {string} absolutePath the path to look the content with desired links
+ * @returns {array} array containing objects with links information
+ */
 const readFiles = (absolutePath) => {
   //console.log(fs.readFileSync(absolutePath,'utf-8'))
   const arrLinks = [];
   if(absolutePath !== ''){  
     const content = fs.readFileSync(absolutePath,'utf-8');
-    console.log(content)
-    //const arrPaths = content.match(/es*/g);
-    //const arrPaths = content.match(/\[.*\]\(.*\)/g)
-    const arrPaths = content.match(/\[.*\]\(.*\)/g);
+    const http = /(\[(.*?)\])?\(http(.*?)\)/gm;
+    const arrPaths = content.match(http);
+    
     console.log(arrPaths)
     if(absolutePath !=='' && arrPaths !== null){
-      arrPaths.map((url) => {
-        const text = url.slice(1, url.indexOf(']'));
-        const href = url.slice(url.indexOf(']')+2, url.indexOf(')'));
+      arrPaths.map((link) => {
+        const text = link.slice(1, link.indexOf(']'));
+        const href = link.slice(link.indexOf(']')+2, link.indexOf(')'));
         const file = absolutePath;
         const obj = {
           href,
@@ -88,22 +94,17 @@ const readFiles = (absolutePath) => {
   return arrLinks;
 }
 //readFiles('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
-readFiles('D:\\Lab\\LIM018-md-links\\tools\\tool.md');
+readFiles('D:/Lab/LIM018-md-links/tools/tool.md');
 //readFiles('./tools/tool.md')
 
 // console.log(readFiles('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
 module.exports = {
   verifyRoute,
   typeRoute,
-  verifyTypeOfExtension,
-
+  verifyTypeOfExtension
 }; 
 
-/* module.exports = () =>{
-  verifyRoute,
-  typeRoute
-} */
-// README expresiones regulares 
+
 
 
 
