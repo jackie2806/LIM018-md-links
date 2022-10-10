@@ -22,7 +22,6 @@ verifyRoute('./tools/reading.word')
 
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
 const typeRoute = (route) => {
-  
   if(path.isAbsolute(route)){
     console.log('Es una ruta absoluta?', path.isAbsolute(route))
     return path.isAbsolute(route)
@@ -34,19 +33,19 @@ const typeRoute = (route) => {
 typeRoute('./tools/reading.word');
 // 3. 1Función que verifica si la ruta es un directorio
 const verifyDirectory = (absoluteRoute) => {
-  console.log(fs.statSync(absoluteRoute).isDirectory()); // cuando no existe la ruta arroja un error
+  //console.log(fs.statSync(absoluteRoute).isDirectory()); // cuando no existe la ruta arroja un error
    if(fs.statSync(absoluteRoute).isDirectory()){
-    return  fs.statSync(absoluteRoute).isDirectory();
+    return  console.log('Esta ruta contiene un directorio', fs.statSync(absoluteRoute).isDirectory());
   } else {
-    return 'No es un directorio';
+    return console.log('Esta ruta no contiene un directorio');
   }
 }
-verifyDirectory('./tools');
+verifyDirectory('D:\\Lab\\LIM018-md-links\\tools');
 // 3. 2Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
 const readFile = (route) => {
 
   if (path.extname(route)){
-    console.log('La ruta contiene un archivo: ', path.extname(route))
+    console.log('La ruta contiene un archivo con extensión:', path.extname(route))
     return path.extname(route);
     
   } else {
