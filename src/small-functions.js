@@ -95,17 +95,17 @@ const checkLinks = (arrLinks) => {
     fetch(links.href)
       .then(response => {
         if (response.status >= 200 && response.status < 400) {
-          links.statusResponse = response.status;
-          links.ok = response.statusText;
+          links.status = response.status;
+          links.message = response.statusText;
           resolve(links);
         } else {
-          links.statusResponse = response.status;
-          links.ok = 'Fail';
+          links.status = response.status;
+          links.message = 'Fail';
           resolve(links);
         }
       }).catch(() => {
-        links.statusResponse = '';
-        links.ok = 'Fail';
+        links.status = '';
+        links.message = 'Fail';
         resolve(links);
       });
   })
@@ -115,16 +115,62 @@ const checkLinks = (arrLinks) => {
   const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
+console.log(checkLinks( [
+  {
+    href: 'https://nodejs.or/es/',
+    text: 'Node',
+    file: 'D:/Lab/LIM018-md-links/tools/tool.md'
+  },
+  
+  {
+    href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'Markdown',
+    file: 'D:/Lab/LIM018-md-links/tools/tool.md'
+  }
+],).then(console.log)) 
 // 7. Estadísitcas
 const totalStats = (arrLinks) => {
   return arrLinks.length;
 }
 
 const brokenStats = (arrLinks) => {
-  const arrBrokenStats = arrLinks.filter((link) => link.ok == 'Fail');
+  const arrBrokenStats = arrLinks.filter((link) => link.message == 'Fail');
   return arrBrokenStats.length;
 }
 
+const uniqueStats = (arrLinks) => {
+  const arrUniqueStats = [];
+  arrLinks.forEach((link) => {
+    if(arrUniqueStats.indexOf(link.href === -1)){
+      arrUniqueStats.push(link.href);
+    }
+  }); 
+  /* const arrUniqueStats = [...new Set (arrLinks.map((link) => link.href))] */
+  return arrUniqueStats.length;
+}
+console.log(uniqueStats([ {
+  href: 'https://nodejs.or/es/',
+  text: 'Node',
+  file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+  status: '',
+  message: 'Fail'
+},
+{
+  href: 'https://nodejs.org/es/',
+  text: 'Node',
+  file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+  status: '',
+  ok: 'Fail'
+},
+{
+  href: 'https://es.wikipedia.org/wiki/Markdown',
+  text: 'Markdown',
+  file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+  status: 200,
+  message: 'OK'
+}
+  
+]))
 
 module.exports = {
   verifyRoute,
