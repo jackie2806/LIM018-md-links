@@ -19,11 +19,11 @@ describe('Function that verify if the route exists', () => {
 
 describe('Function that verify if the route is absolute', () => {
   it('Should be a function', () => {
-    expect(typeof fn.typeRoute).toBe('function');    
+    expect(typeof fn.verifyAbsoluteRoute).toBe('function');    
   });
   it('Should verify if the route is absolute', () => {
     const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
-    expect(fn.typeRoute(route)).toBe(true);
+    expect(fn.verifyAbsoluteRoute(route)).toBe(true);
   })
 });
 
@@ -31,13 +31,13 @@ describe('Function that verify if the route is absolute', () => {
 
 describe('Function that verify if the if the route contains a file', () => {
   it('Should be a function', () => {
-    expect(typeof fn.verifyTypeOfExtension).toBe('function');
+    expect(typeof fn.verifyExtensionMd).toBe('function');
   });
   it('Should verify if the route has a file and shows it', () => {
     const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
    // const path = require('path');
-    console.log(fn.verifyTypeOfExtension(route));
-    expect(fn.verifyTypeOfExtension(route)).toBe(false);
+    console.log(fn.verifyExtensionMd(route));
+    expect(fn.verifyExtensionMd(route)).toBe(false);
   })
 })
 
