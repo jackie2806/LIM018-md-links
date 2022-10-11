@@ -145,7 +145,6 @@ const uniqueStats = (arrLinks) => {
       arrUniqueStats.push(link.href);
     }
   }); 
-  /* const arrUniqueStats = [...new Set (arrLinks.map((link) => link.href))] */
   return arrUniqueStats.length;
 }
 /* console.log(uniqueStats([ {

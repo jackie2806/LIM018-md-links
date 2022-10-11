@@ -3,7 +3,7 @@ const fn = require('./src/index.js');
 const mdLinks = () => {
   return new Promise((resolve, reject) => {
     // ...
-    checkLinks([
+   /*  checkLinks([
       {
         href: 'https://nodejs.org/es/',
         text: 'Node',
@@ -15,8 +15,8 @@ const mdLinks = () => {
         file: 'D:/Lab/LIM018-md-links/tools/tool.md'
       }
     ]).then((res) => resolve(res))
-  })
+  }) */
 }
 
 
-mdLinks().then(console.log)
+/* mdLinks().then(console.log) */
