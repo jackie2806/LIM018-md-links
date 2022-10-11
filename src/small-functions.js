@@ -1,29 +1,24 @@
 const prueba = './README.md';
-// console.log(prueba);
-// en index.js irá la función mdLink
-// Test: usar espías 
-//path fs import 
-// Métodos de Node (path / fs)
-// const { existsSync } = require('fs'); // desestructuración de objetos
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 
 
 // 1. Función que verifica si la ruta existe
 const verifyRoute = (route) => {
-  if( fs.existsSync(route)){
+  if (fs.existsSync(route)) {
     console.log('La ruta existe?', fs.existsSync(route));
     return fs.existsSync(route)
   } else {
     return console.log('La ruta no existe');
   }
- 
+
 }
 verifyRoute('./tools/reading.word')
 
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
 const typeRoute = (route) => {
-  if(path.isAbsolute(route)){
+  if (path.isAbsolute(route)) {
     console.log('Es una ruta absoluta?', path.isAbsolute(route))
     return path.isAbsolute(route)
   } else {
@@ -35,8 +30,8 @@ typeRoute('./tools/reading.word');
 // 3. 1Función que verifica si la ruta es un directorio
 const verifyDirectory = (absolutePath) => {
   //console.log(fs.statSync(absoluteRoute).isDirectory()); // cuando no existe la ruta arroja un error
-   if(fs.statSync(absolutePath).isDirectory()){
-    return  console.log('Esta ruta contiene un directorio', fs.statSync(absolutePath).isDirectory());
+  if (fs.statSync(absolutePath).isDirectory()) {
+    return console.log('Esta ruta contiene un directorio', fs.statSync(absolutePath).isDirectory());
   } else {
     return console.log('Esta ruta no contiene un directorio');
   }
@@ -48,7 +43,7 @@ verifyDirectory('D:/Lab/LIM018-md-links/tools/tools-files');
 // 3. 3Función que verifica si la ruta contiene un ARCHIVO y muesta extensión del mismo
 const verifyTypeOfExtension = (absolutePath) => {
 
-  if(path.extname(absolutePath)=='.md'){
+  if (path.extname(absolutePath) == '.md') {
     console.log('Este archivo contiene un archivo .md')
     return true;
   } else {
@@ -66,19 +61,19 @@ verifyTypeOfExtension('./tools/reading.word')
  * @param {string} absolutePath the path to look the content with desired links
  * @returns {array} array containing objects with links information
  */
-const readFiles = (absolutePath) => {
+const readFile = (absolutePath) => {
   //console.log(fs.readFileSync(absolutePath,'utf-8'))
   const arrLinks = [];
-  if(absolutePath !== ''){  
-    const content = fs.readFileSync(absolutePath,'utf-8');
+  if (absolutePath !== '') {
+    const content = fs.readFileSync(absolutePath, 'utf-8');
     const http = /(\[(.*?)\])?\(http(.*?)\)/gm;
     const arrPaths = content.match(http);
-    
+
     console.log(arrPaths)
-    if(absolutePath !=='' && arrPaths !== null){
+    if (absolutePath !== '' && arrPaths !== null) {
       arrPaths.map((link) => {
         const text = link.slice(1, link.indexOf(']'));
-        const href = link.slice(link.indexOf(']')+2, link.indexOf(')'));
+        const href = link.slice(link.indexOf(']') + 2, link.indexOf(')'));
         const file = absolutePath;
         const obj = {
           href,
@@ -88,77 +83,96 @@ const readFiles = (absolutePath) => {
         arrLinks.push(obj);
       });
     }
-   
+
   }
   console.log(arrLinks)
   return arrLinks;
 }
 //readFiles('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
-readFiles('D:/Lab/LIM018-md-links/tools/tool.md');
+readFile('D:/Lab/LIM018-md-links/tools/tool.md');
 //readFiles('./tools/tool.md')
 
 // console.log(readFiles('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
+/**
+ * This function gets a directory path, extract the content and look for links
+ * @param {array} arrLinks, the path to look the content with desired links
+ * @returns {promise} array containing objects with links information
+ */
+
+const checkLinks = (arrLinks) => {
+  const checkedArr = arrLinks.map(links => new Promise((resolve, reject) => {
+    fetch(links.href)
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          links.statusResponse = response.status;
+          links.ok = response.statusText;
+          resolve(links);
+        } else {
+          links.statusResponse = response.status;
+          links.ok = 'Fail';
+          resolve(links);
+        }
+      }).catch(() => {
+        links.statusResponse = '';
+        links.ok = 'Fail';
+        resolve(links);
+      });
+  })
+  );
+  //console.log(Promise.all(checkedArr))
+
+  //return Promise.all(checkedArr); 
+  const unaPromesa = Promise.all(checkedArr);
+  return unaPromesa;
+};
+
+
+
+
+
+
+
+// Lectura del directorio
+/* const readDirectory = (absolutePath, arrLinks) => {
+  console.log(arrLinks)
+  const subDirectoryFiles = fs.readdirSync(absolutePath);
+  console.log(subDirectoryFiles);
+  subDirectoryFiles.forEach(directory => {
+    const subPathAbsolute = path.join(absolutePath, directory);
+    console.log(subDirectoryFiles);
+    if(verifyDirectory(subDirectoryFiles)){
+      const temporalDirectory = readDirectory(subDirectoryFiles,arrLinks);
+      temporalDirectory.forEach(tempDirectory => {
+        arrLinks.push(tempDirectory);
+      })
+    } else {
+      if(verifyTypeOfExtension(subDirectoryFiles)){
+        arrLinks = readFile(subPathAbsolute);
+      }
+    }
+  });
+  console.log(arrLinks)
+  return arrLinks;
+}
+
+readDirectory('D:/Lab/LIM018-md-links/tools/tools-files',[
+  {
+    href: 'https://nodejs.org/es/',
+    text: 'Node',
+    file: 'D:/Lab/LIM018-md-links/tools/tools-files/'
+  },
+  {
+    href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'Markdown',
+    file: 'D:/Lab/LIM018-md-links/tools/tools-files/'
+  }
+])
+ */
 module.exports = {
   verifyRoute,
   typeRoute,
   verifyTypeOfExtension
-}; 
+};
 
 
 
-
-
-// Explicación de desestructuración de objetos
-/* const myObj = {
-    nameX: 'rita',
-    lastName: 'acevedo'
-}
-
-//const name = myObj.name;
-//const lastName = myObj.lastName;
-
-const { nameX, lastName } = myObj
-
-console.log(nameX, lastName)
-
-module.exports = {
-    existsSync: function () {
-
-    },
-} */
-
-//Haciendo pruebas con Node
-/* let miNombre = process.env.NOMBRE || 'Sin nombre';
-console.log('Hola, '+ miNombre); */
-
-// Comprensión de la asincronía
-/* function soyAsincrona(miCallback){
-  setTimeout(() => {
-    console.log('Estoy siendo asíncrona');
-    miCallback();
-  }, 1000);
-
-}
-console.log('Iniciando proceso...');
-soyAsincrona(function(){
-  console.log('Terminando proceso');
-}) */
-// Algunas cositas de NODE muy útiles 
-/*
-console.log(__dirname);
-console.log(__filename); 
-console.table();
-const os = require('os');
-console.log(os.arch());
-console.log(os.platform());
-console.log(os.cpus().length);
-const SIZE = 1024;
-function kb(bytes) { return bytes / SIZE}
-function mb(bytes) { return kb(bytes) / SIZE}
-function gb(bytes) { return mb(bytes) / SIZE}
-console.log(os.freemem());
-console.log(kb(os.freemem()));
-console.log(mb(os.freemem()));
-console.log(gb(os.freemem()));
-console.log(gb(os.totalmem())); 
-*/

@@ -9,7 +9,7 @@ describe('Function that verify if the route exists', () => {
       //expect(typeof verifyRoute).toBe('function');
   });
   it('Should verify if the route exists', () => {
-    const route = './tools/reading.word';
+    const route = './tools/reading.txt';
     expect(fn.verifyRoute(route)).toBe(true);
   })
  
