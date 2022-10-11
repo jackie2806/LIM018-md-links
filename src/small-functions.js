@@ -115,7 +115,7 @@ const checkLinks = (arrLinks) => {
   const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
-console.log(checkLinks( [
+/* console.log(checkLinks( [
   {
     href: 'https://nodejs.or/es/',
     text: 'Node',
@@ -127,7 +127,7 @@ console.log(checkLinks( [
     text: 'Markdown',
     file: 'D:/Lab/LIM018-md-links/tools/tool.md'
   }
-],).then(console.log)) 
+],).then(console.log)) */ 
 // 7. Estadísitcas
 const totalStats = (arrLinks) => {
   return arrLinks.length;
@@ -148,7 +148,7 @@ const uniqueStats = (arrLinks) => {
   /* const arrUniqueStats = [...new Set (arrLinks.map((link) => link.href))] */
   return arrUniqueStats.length;
 }
-console.log(uniqueStats([ {
+/* console.log(uniqueStats([ {
   href: 'https://nodejs.or/es/',
   text: 'Node',
   file: 'D:/Lab/LIM018-md-links/tools/tool.md',
@@ -171,11 +171,17 @@ console.log(uniqueStats([ {
 }
   
 ]))
-
+ */
 module.exports = {
   verifyRoute,
   verifyAbsoluteRoute,
-  verifyExtensionMd
+  verifyDirectoryOrFile,
+  verifyExtensionMd,
+  readFileWithExtensionMd,
+  checkLinks,
+  totalStats,
+  brokenStats,
+  uniqueStats,
 };
 
 
