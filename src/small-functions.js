@@ -83,6 +83,7 @@ const readFileWithExtensionMd = (filePath) => {
 //readFileWithExtensionMd('D:/Lab/LIM018-md-links/tools/tool.md');
 //readFileWithExtensionMd('./tools/tool.md')
 // console.log(readFileWithExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
+// 6. Función que verifica los links
 /**
  * This function checks if the links are broken or not
  * @param {array} arrLinks, the array contents the links for checking
@@ -114,9 +115,15 @@ const checkLinks = (arrLinks) => {
   const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
+// 7. Estadísitcas
+const totalStats = (arrLinks) => {
+  return arrLinks.length;
+}
 
-const totalStats = 
-
+const brokenStats = (arrLinks) => {
+  const arrBrokenStats = arrLinks.filter((link) => link.ok == 'Fail');
+  return arrBrokenStats.length;
+}
 
 
 module.exports = {
