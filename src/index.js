@@ -2,8 +2,12 @@ const fn = require('./src/index.js');
 
 const mdLinks = () => {
   return new Promise((resolve, reject) => {
+    if(!fn.verifyRoute(route)){
+      reject(new Error('La ruta no existe'));
+    }
+  
     // ...
-   /*  checkLinks([
+    /* checkLinks([
       {
         href: 'https://nodejs.org/es/',
         text: 'Node',
@@ -19,4 +23,4 @@ const mdLinks = () => {
 }
 
 
-/* mdLinks().then(console.log) */
+// mdLinks().then(console.log)
