@@ -1,6 +1,6 @@
 const fn = require('./src/index.js');
 
-const mdLinks = () => {
+const mdLinks = (route, options) => {
   const promise =  new Promise((resolve, reject) => {
     if(!fn.verifyRoute(route)){
       reject(new Error('La ruta no existe'));
