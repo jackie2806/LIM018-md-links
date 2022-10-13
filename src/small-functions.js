@@ -14,7 +14,7 @@ const verifyRoute = (route) => {
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
 const verifyAbsoluteRoute = (route) => {
   if (path.isAbsolute(route)) {
-      return path.isAbsolute(route)
+      return path.isAbsolute(route);
   } else {
       return path.resolve(route);
   }

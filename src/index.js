@@ -1,11 +1,11 @@
 const fn = require('./src/index.js');
 
 const mdLinks = () => {
-  return new Promise((resolve, reject) => {
+  const promise =  new Promise((resolve, reject) => {
     if(!fn.verifyRoute(route)){
       reject(new Error('La ruta no existe'));
     }
-  
+   
     // ...
     /* checkLinks([
       {
