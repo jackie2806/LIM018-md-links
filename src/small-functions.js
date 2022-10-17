@@ -116,7 +116,7 @@ const checkLinks = (arrLinks) => {
   const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
-console.log(checkLinks( [
+/* console.log(checkLinks( [
   {
     href: 'https://nodejs.or/es/',
     text: 'Node',
@@ -128,7 +128,7 @@ console.log(checkLinks( [
     text: 'Markdown',
     file: 'D:/Lab/LIM018-md-links/tools/tool.md'
   }
-],).then(console.log)) 
+],).then(console.log))  */
 // 7. Estadísitcas
 const totalStats = (arrLinks) => {
   return arrLinks.length;

@@ -2,6 +2,7 @@ const fn = require('../src/small-functions.js');
 // const { verifyRoute, typeRoute } = require('../src/index.js');
 /* const verifyRoute = require('../src/index.js');
 const typeRoute = require('../src/index.js'); */
+//jest.mock('node-fetch');
 // ------ TEST 1
 describe('Function that verify if the route exists', () => {
   it('Should be a function', () => {
@@ -42,4 +43,16 @@ describe('Function that verify if the if the route contains a file', () => {
 })
 
 
+// ----- TEST 4
+
+
+// ----- TEST 5
+
+
+
+// ----- TEST 6
+
+
+
+// ----- TEST 7
 
