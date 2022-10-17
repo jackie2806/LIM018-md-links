@@ -9,7 +9,7 @@ const verifyRoute = (route) => {
   }else{
     undefined;
   }}
-//verifyRoute('./tools/reading.word')
+
 
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
 const verifyAbsoluteRoute = (route) => {
@@ -19,7 +19,7 @@ const verifyAbsoluteRoute = (route) => {
       return path.resolve(route);
   }
 }
-// verifyAbsoluteRoute('./tools/reading.word');
+
 
 // 3. Función que verifica si la ruta es un directorio
 const verifyDirectoryOrFile = (absolutePath) => {
@@ -33,8 +33,7 @@ const verifyDirectoryOrFile = (absolutePath) => {
   } 
  
 }
-//console.log(verifyDirectoryOrFile('D:\\Lab\\LIM018-md-links\\tools\\tools-files'));
-//console.log(verifyDirectoryOrFile('D:/Lab/LIM018-md-links/tools'));
+
 
 // 4. Función que verifica si la ruta tiene un archivo con extensión .MD
 const verifyExtensionMd = (absolutePath) => {
@@ -44,12 +43,11 @@ const verifyExtensionMd = (absolutePath) => {
     return false;
   }
 }
-// verifyExtensionMd('./tools/reading.word')
-//console.log(__dirname);
+
 
 // 5. Leer los archivos .md y retornar un array de objetos¨
 /**
- * This function gets a file path with extension .md, then, extract the content and look for links
+ * This function gets a file path with extension .md, then, extracts the content and looks for links
  * @param {string} filePath the path of file to look the content with desired links
  * @returns {array} array containing objects with links information
  */
@@ -76,13 +74,9 @@ const readFileWithExtensionMd = (filePath) => {
     }
 
   }
-  console.log(arrLinks)
   return arrLinks;
 }
-//readFileWithExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tools-files');
-//readFileWithExtensionMd('D:/Lab/LIM018-md-links/tools/tool.md');
-//readFileWithExtensionMd('./tools/tool.md')
-// console.log(readFileWithExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
+
 // 6. Función que verifica los links
 /**
  * This function checks if the links are broken or not
@@ -111,24 +105,10 @@ const checkLinks = (arrLinks) => {
       });
   })
   );
-  //console.log(Promise.all(checkedArr))
-  //return Promise.all(checkedArr); 
-  const aPromiseOfArrLinks = Promise.all(checkedArr);
+   const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
-/* console.log(checkLinks( [
-  {
-    href: 'https://nodejs.or/es/',
-    text: 'Node',
-    file: 'D:/Lab/LIM018-md-links/tools/tool.md'
-  },
-  
-  {
-    href: 'https://es.wikipedia.org/wiki/Markdown',
-    text: 'Markdown',
-    file: 'D:/Lab/LIM018-md-links/tools/tool.md'
-  }
-],).then(console.log))  */
+
 // 7. Estadísitcas
 const totalStats = (arrLinks) => {
   return arrLinks.length;
