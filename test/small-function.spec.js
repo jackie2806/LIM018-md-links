@@ -10,8 +10,8 @@ describe('Function that verify if the route exists', () => {
       //expect(typeof verifyRoute).toBe('function');
   });
   it('Should verify if the route exists', () => {
-    const route = './tools/reading.txt';
-    expect(fn.verifyRoute(route)).toBe(true);
+    expect(fn.verifyRoute('./tools/reading.txt')).toBe(true);
+    expect(fn.verifyRoute('./tools/readin.txt')).toBe(undefined);
   })
  
 });
@@ -25,10 +25,30 @@ describe('Function that verify if the route is absolute', () => {
   it('Should verify if the route is absolute', () => {
     const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
     expect(fn.verifyAbsoluteRoute(route)).toBe(true);
+    expect(fn.verifyAbsoluteRoute('./tools/reading.word')).toEqual(route);
   })
 });
 
 // ----- TEST 3
+describe('Function that verify if it is a directory or file', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.verifyDirectoryOrFile).toBe('function');
+  });
+  it('Should be search files in a directory', () => {
+    const arr =  [
+      'D:\\Lab\\LIM018-md-links\\tools\\reading.txt',
+      'D:\\Lab\\LIM018-md-links\\tools\\texting.txt',
+      'D:\\Lab\\LIM018-md-links\\tools\\tool.md',
+      'D:\\Lab\\LIM018-md-links\\tools\\tooling.md',
+      'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md'
+    ];
+    expect(fn.verifyDirectoryOrFile('D:/Lab/LIM018-md-links/tools')).toEqual(arr);
+  });
+})
+
+
+
+// ----- TEST 4
 
 describe('Function that verify if the if the route contains a file', () => {
   it('Should be a function', () => {
@@ -41,9 +61,6 @@ describe('Function that verify if the if the route contains a file', () => {
     expect(fn.verifyExtensionMd(route)).toBe(false);
   })
 })
-
-
-// ----- TEST 4
 
 
 // ----- TEST 5

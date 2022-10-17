@@ -7,7 +7,7 @@ const verifyRoute = (route) => {
   if(fs.existsSync(route)){
     return true;
   }else{
-    false;
+    undefined;
   }}
 //verifyRoute('./tools/reading.word')
 
@@ -34,7 +34,7 @@ const verifyDirectoryOrFile = (absolutePath) => {
  
 }
 //console.log(verifyDirectoryOrFile('D:\\Lab\\LIM018-md-links\\tools\\tools-files'));
-//console.log(verifyDirectoryOrFile('D:/Lab/LIM018-md-links/tools/tool.md'));
+//console.log(verifyDirectoryOrFile('D:/Lab/LIM018-md-links/tools'));
 
 // 4. Función que verifica si la ruta tiene un archivo con extensión .MD
 const verifyExtensionMd = (absolutePath) => {
