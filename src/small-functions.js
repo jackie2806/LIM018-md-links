@@ -128,30 +128,7 @@ const uniqueStats = (arrLinks) => {
   }); 
   return arrUniqueStats.length;
 }
-/* console.log(uniqueStats([ {
-  href: 'https://nodejs.or/es/',
-  text: 'Node',
-  file: 'D:/Lab/LIM018-md-links/tools/tool.md',
-  status: '',
-  message: 'Fail'
-},
-{
-  href: 'https://nodejs.org/es/',
-  text: 'Node',
-  file: 'D:/Lab/LIM018-md-links/tools/tool.md',
-  status: '',
-  ok: 'Fail'
-},
-{
-  href: 'https://es.wikipedia.org/wiki/Markdown',
-  text: 'Markdown',
-  file: 'D:/Lab/LIM018-md-links/tools/tool.md',
-  status: 200,
-  message: 'OK'
-}
-  
-]))
- */
+
 module.exports = {
   verifyRoute,
   verifyAbsoluteRoute,

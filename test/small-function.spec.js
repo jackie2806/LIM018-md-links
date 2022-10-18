@@ -142,8 +142,72 @@ describe('Function checks if the links are broken', () => {
 });
 
 
+// ----- TEST 7 (3)
+
+describe('Function gets the total of stats', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.totalStats).toBe('function');
+  });
+  it('Should return a total of stats', () => {
+    const arrOfLinks1 = [ {
+      href: 'https://nodejs.or/es/',
+      text: 'Node',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: '',
+      message: 'Fail'
+    },
+    {
+      href: 'https://nodejs.org/es/',
+      text: 'Node',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: '',
+      ok: 'Fail'
+    },
+    {
+      href: 'https://es.wikipedia.org/wiki/Markdown',
+      text: 'Markdown',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: 200,
+      message: 'OK'
+    }
+      
+    ];
+    expect(fn.totalStats(arrOfLinks1)).toEqual(3);
+  });
+
+});
+
+describe('Function gets broken stats', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.brokenStats).toBe('function');
+  });
+  it('Should return broken stats', () => {
+    const arrOfLinks2 = [ {
+      href: 'https://nodejs.or/es/',
+      text: 'Node',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: '',
+      message: 'Fail'
+    },
+    {
+      href: 'https://nodejs.org/es/',
+      text: 'Node',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: '',
+      ok: 'Fail'
+    },
+    {
+      href: 'https://es.wikipedia.org/wiki/Markdown',
+      text: 'Markdown',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: 200,
+      message: 'OK'
+    }
+      
+    ];
+    expect(fn.brokenStats(arrOfLinks2)).toEqual(1);
+  });
+});
 
 
-
-// ----- TEST 7
 
