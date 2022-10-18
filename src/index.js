@@ -1,5 +1,5 @@
 //const { checkLinks } = require('./small-functions.js');
-const fn = require('./src/small-functions.js');
+const fn = require('../src/small-functions.js');
 
 const mdLinks = (route, options) => {
   const promise =  new Promise((resolve, reject) => {
@@ -9,11 +9,11 @@ const mdLinks = (route, options) => {
     } else {
        // ¿Es una ruta absoluta? ---> absoluteRoute verifica ello y si la ruta no es absoluta, pues la convierte a una ruta absoluta
       const absoluteRoute = fn.verifyAbsoluteRoute(route);
-      const arrLinks = [];
+      let arrLinks = [];
          // ¿Es un directorio? Leer el contenido del directorio
       const checkDirectory = fn.verifyDirectoryOrFile(absoluteRoute);
          if(checkDirectory){
-           arrLinks = checkDirectory(absoluteRoute);
+           arrLinks = fn.verifyDirectoryOrFile(absoluteRoute);
         } else {
           // ¿Es un archivo md.
           const checkExtesionMd = fn.verifyExtensionMd(absoluteRoute);
@@ -31,7 +31,7 @@ const mdLinks = (route, options) => {
               // Options (validate)
               // Validate Sí: Validar cada links por medio de peticiones HTTP ->> href, text, file, status, Ok
               // Validate No: retorna href, text, file 
-              if(options.validate == true){
+              if(options == true){
                 checkLinks(arrLinks)
                   .then((response) => {
                     resolve(response);
@@ -46,4 +46,4 @@ const mdLinks = (route, options) => {
 }
 
 
-  mdLinks().then(console.log); 
+  mdLinks('./tools/reading.txt')
