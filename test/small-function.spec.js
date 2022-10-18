@@ -209,5 +209,37 @@ describe('Function gets broken stats', () => {
   });
 });
 
+describe('Function gets unique stats', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.uniqueStats).toBe('function');
+  });
+  it('Should return unique stats', () => {
+    const arrOfLinks3 = [ {
+      href: 'https://nodejs.or/es/',
+      text: 'Node',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: '',
+      message: 'Fail'
+    },
+    {
+      href: 'https://nodejs.org/es/',
+      text: 'Node',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: '',
+      ok: 'Fail'
+    },
+    {
+      href: 'https://es.wikipedia.org/wiki/Markdown',
+      text: 'Markdown',
+      file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      status: 200,
+      message: 'OK'
+    }
+      
+    ];
+
+    expect(fn.uniqueStats(arrOfLinks3)).toEqual(3);
+  })
+})
 
 

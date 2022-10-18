@@ -1,10 +1,10 @@
-const fn = require('./src/index.js');
+//const fn = require('./src/index.js');
 
-const mdLinks = (route, options) => {
+/* const mdLinks = (route, options) => {
   const promise =  new Promise((resolve, reject) => {
     if(!fn.verifyRoute(route)){
       reject(new Error('La ruta no existe'));
-    }
+    } */
     // Verificar el tipo de ruta
     // ¿Es una ruta absoluta?
     // ¿Es un directorio? Leer el contenido del directorio
@@ -27,7 +27,7 @@ const mdLinks = (route, options) => {
       }
     ]).then((res) => resolve(res))
   }) */
-}
+//}
 
 
-// mdLinks().then(console.log)
+ /* mdLinks().then(console.log); */

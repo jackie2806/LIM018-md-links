@@ -113,7 +113,6 @@ const checkLinks = (arrLinks) => {
 const totalStats = (arrLinks) => {
   return arrLinks.length;
 }
-
 const brokenStats = (arrLinks) => {
   const arrBrokenStats = arrLinks.filter((link) => link.message == 'Fail');
   return arrBrokenStats.length;
@@ -126,6 +125,7 @@ const uniqueStats = (arrLinks) => {
       arrUniqueStats.push(link.href);
     }
   }); 
+
   return arrUniqueStats.length;
 }
 
