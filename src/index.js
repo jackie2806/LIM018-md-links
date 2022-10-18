@@ -8,7 +8,12 @@ const mdLinks = (route, options) => {
     } 
     // Verificar el tipo de ruta
     const absoluteRoute = fn.verifyAbsoluteRoute(route);
-    const links = fn.checkLinks(absolutePath);
+    const arrLinks = [];
+    if(absoluteRoute){
+      absoluteRoute;
+    } else {
+      
+    }
 
     // ¿Es una ruta absoluta?
   
