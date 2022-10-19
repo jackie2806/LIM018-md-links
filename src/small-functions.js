@@ -34,24 +34,13 @@ const verifyDirectoryOrFile = (absolutePath) => {
  
 }
 
-
-// 4. Función que verifica si la ruta tiene un archivo con extensión .MD
-const verifyExtensionMd = (absolutePath) => {
-  if (path.extname(absolutePath) === '.md') {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
-// 5. Leer los archivos .md y retornar un array de objetos¨
+// 4. Leer los archivos .md y retornar un array de objetos¨
 /**
  * This function gets a file path with extension .md, then, extracts the content and looks for links
  * @param {string} filePath the path of file to look the content with desired links
  * @returns {array} array containing objects with links information
  */
-const readFileWithExtensionMd = (filePath) => {
+ const readFileWithExtensionMd = (filePath) => {
   //console.log(fs.readFileSync(absolutePath,'utf-8'))
   const arrLinks = [];
   if (filePath !== '') {
@@ -76,8 +65,26 @@ const readFileWithExtensionMd = (filePath) => {
   }
   return arrLinks;
 }
+// 5. Función que devuelve los links que se encontraron dentro de los archivos .md
+const obtainLinks = (absolutePath) => {
+  console.log('o', absolutePath)
+  let files = verifyDirectoryOrFile(absolutePath);
+  files = files.filter((file) => path.extname(absolutePath) === '.md');
+  const links = files.map((file) => 
+    readFileWithExtensionMd(file)).filter((file) => typeof file !== 'string').flat();
+  return links;
+}
+//console.log(obtainLinks('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
 
-// 6. Función que verifica los links
+// 6. Función que verifica si la ruta tiene un archivo con extensión .MD
+const verifyExtensionMd = (absolutePath) => {
+  if (path.extname(absolutePath) === '.md') {
+    return true;
+  } else {
+    return false;
+  }
+}
+// 7. Función que verifica los links
 /**
  * This function checks if the links are broken or not
  * @param {array} arrLinks, the array contents the links for checking
@@ -109,7 +116,7 @@ const checkLinks = (arrLinks) => {
   return aPromiseOfArrLinks;
 };
 
-// 7. Estadísitcas
+// 8. Estadísitcas
 const totalStats = (arrLinks) => {
   return arrLinks.length;
 }
@@ -133,8 +140,9 @@ module.exports = {
   verifyRoute,
   verifyAbsoluteRoute,
   verifyDirectoryOrFile,
-  verifyExtensionMd,
   readFileWithExtensionMd,
+  obtainLinks,  
+  verifyExtensionMd,
   checkLinks,
   totalStats,
   brokenStats,

@@ -51,21 +51,6 @@ describe('Function verifies if the route is a directory or a file', () => {
 
 
 // ----- TEST 4
-
-describe('Function verifies if the route contains a file with .md extension', () => {
-  it('Should be a function', () => {
-    expect(typeof fn.verifyExtensionMd).toBe('function');
-  });
-  it('Should verify if the route has a file and shows it', () => {
-    const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
-   // const path = require('path');
-   // console.log(fn.verifyExtensionMd(route));
-    expect(fn.verifyExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toBe(true);
-    expect(fn.verifyExtensionMd(route)).toBe(false);
-  })
-})
-
-// ----- TEST 5
 describe('Function extracts the content of file with .md extension and looks for links', () => {
   it('Should be a function', () => {
     expect(typeof fn.readFileWithExtensionMd).toBe('function');
@@ -87,7 +72,46 @@ describe('Function extracts the content of file with .md extension and looks for
   })
 })
 
+// ----- TEST 5
+describe('Function obtains the all links after reading each file with .md extension', () =>{
+  it('Should be a function', () => {
+    expect(typeof fn.obtainLinks).toBe('function');
+  });
+  it('Should return all links after reading each file with .md extension', () =>{
+    const arrCheck0 = [
+      {
+        href: 'https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/?id=discuss',
+        text: 'Node',
+        file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md'
+      },
+      {
+        href: 'https://es.wikipedia.org/wiki/Markdown',
+        text: 'Markdown',
+        file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md'
+      }
+    ];
+    expect(fn.obtainLinks('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toEqual(arrCheck0);
+  })
+})
 // ----- TEST 6
+
+describe('Function verifies if the route contains a file with .md extension', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.verifyExtensionMd).toBe('function');
+  });
+  it('Should verify if the route has a file and shows it', () => {
+    const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
+   // const path = require('path');
+   // console.log(fn.verifyExtensionMd(route));
+    expect(fn.verifyExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toBe(true);
+    expect(fn.verifyExtensionMd(route)).toBe(false);
+  })
+})
+
+
+
+
+// ----- TEST 7
 describe('Function checks if the links are broken', () => {
   it('Should be a function', () => {
     expect(typeof fn.checkLinks).toBe('function');
@@ -142,7 +166,7 @@ describe('Function checks if the links are broken', () => {
 });
 
 
-// ----- TEST 7 (3)
+// ----- TEST 8 (3)
 
 describe('Function gets the total of stats', () => {
   it('Should be a function', () => {
