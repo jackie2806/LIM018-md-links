@@ -77,7 +77,7 @@ const verifyExtensionMd = (absolutePath) => {
 const obtainLinks = (absolutePath) => {
   console.log('o', absolutePath)
   let files = verifyDirectoryOrFile(absolutePath);
-  files = files.filter((file) => path.extname(absolutePath) === '.md');
+  files = files.filter((file) => path.extname(file) === '.md');
   const links = files.map((file) => 
     readFileWithExtensionMd(file)).filter((file) => typeof file !== 'string').flat();
   return links;

@@ -18,7 +18,7 @@ const mdLinks = (route, options) => {
     if(arrAbsoluteRoute.length > 0){      
       // verificar si cada elemento del array de rutas absolutas es un archivo .md
            
-      if(arrAbsoluteRoute.length === 0){
+      if(arrAbsoluteRoute.length === 1){
         
          // Array que solo tiene un elemento, que es una ruta absoluta con un file
         if(fn.verifyExtensionMd(arrAbsoluteRoute[0])){
@@ -27,9 +27,9 @@ const mdLinks = (route, options) => {
           'No es un archivo .md'
         }
       } else {
-        // Array con links de rutas absolutas de distintos tipos de archivos
-        console.log('hola');
-        
+        // Array con links leídos de  las rutas absolutas que se encontraron dentro de un directorio(solo archivos .md);
+        arrLinks = fn.obtainLinks(absolulteRoute);        
+
       }
     
 
