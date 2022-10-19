@@ -106,6 +106,7 @@ const checkLinks = (arrLinks) => {
         }
       })
       .catch(() => {
+        console.log('Soy un error')
         links.status = 'Error';
         links.message = 'Fail';
         resolve(links);
@@ -115,6 +116,17 @@ const checkLinks = (arrLinks) => {
    const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
+/*  checkLinks([
+  {
+    href: 'https://www.geeksforgeeks.o/node-js-fs-readfilesync-method/?id=discuss',
+    text: 'Node',
+    file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md',
+    status: 200,
+    message: 'OK'
+  },
+  
+]).then(console.log)  */
+//mdLinks('./tools/', {validate : true}).then(console.log);
 
 // 8. Estadísitcas
 const totalStats = (arrLinks) => {
