@@ -11,15 +11,30 @@ const mdLinks = (route, options) => {
     } 
     // ¿Es una ruta absoluta?
     const absolulteRoute = fn.verifyAbsoluteRoute(route);
-    const arrAbsoluteRoute = fn. verifyDirectoryOrFile(absolulteRoute);
-    console.log('ruta', absolulteRoute)
-    if(arrAbsoluteRoute){
+    // Verifico si se trata de un archivo o de un directorio
+    const arrAbsoluteRoute = fn. verifyDirectoryOrFile(absolulteRoute); //Devuelvo un array con 
+    // console.log('Array Rutas', arrAbsoluteRoute)
+    // console.log(typeof arrAbsoluteRoute)
+    if(arrAbsoluteRoute.length > 0){      
+      // verificar si cada elemento del array de rutas absolutas es un archivo .md
            
-      console.log(fn.obtainLinks(absolulteRoute))
-    }
+      if(arrAbsoluteRoute.length === 0){
+        
+         // Array que solo tiene un elemento, que es una ruta absoluta con un file
+        if(fn.verifyExtensionMd(arrAbsoluteRoute[0])){
+             arrLinks = fn.readFileWithExtensionMd(arrAbsoluteRoute[0]);
+        } else {
+          'No es un archivo .md'
+        }
+      } else {
+        // Array con links de rutas absolutas de distintos tipos de archivos
+        console.log('hola');
+        
+      }
     
 
-  })    
+  }
+})   
   return promise;
   
 }
