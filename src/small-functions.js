@@ -10,7 +10,6 @@ const verifyRoute = (route) => {
     undefined;
   }}
 
-
 // 2. Función que verifica si la ruta es ABSOLUTA. Si no es absoluta, la covierte a absoluta
 const verifyAbsoluteRoute = (route) => {
   if (path.isAbsolute(route)) {
@@ -19,7 +18,6 @@ const verifyAbsoluteRoute = (route) => {
       return path.resolve(route);
   }
 }
-
 
 // 3. Función que verifica si la ruta es un directorio
 const verifyDirectoryOrFile = (absolutePath) => {
@@ -74,7 +72,6 @@ const obtainLinks = (absolutePath) => {
     readFileWithExtensionMd(file)).filter((file) => typeof file !== 'string').flat();
   return links;
 }
-//console.log(obtainLinks('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
 
 // 6. Función que verifica si la ruta tiene un archivo con extensión .MD
 const verifyExtensionMd = (absolutePath) => {
