@@ -75,7 +75,7 @@ const verifyExtensionMd = (absolutePath) => {
 }
 // 6. Función que devuelve los links que se encontraron dentro de los archivos .md
 const obtainLinks = (absolutePath) => {
-  console.log('o', absolutePath)
+  //console.log('o', absolutePath)
   let files = verifyDirectoryOrFile(absolutePath);
   files = files.filter((file) => path.extname(file) === '.md');
   const links = files.map((file) => 
