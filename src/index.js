@@ -35,21 +35,22 @@ const mdLinks = (route, options) => {
     // Validate Sí: Validar cada links por medio de peticiones HTTP ->> href, text, file, status, Ok
     // Validate No: retorna href, text, file
      if (arrLinks.length === 0) {
-      reject("Este archivo no contiene links");
+      reject(new Error ("Este archivo no contiene links"));
     } else {
       if (options.validate === true) {
         fn.checkLinks(arrLinks).then((response) => {
           resolve(response);
         });
       } else {
-        console.log('Estoy aquí')
+        //console.log('Estoy aquí')
         resolve(arrLinks);
       }
     } 
   });
   return promise;
 };
-
-mdLinks("./tools/",  {validate : true}).then(console.log);
-//mdLinks('./tools/reading.word', false).then(console.log) ruta no existe
+mdLinks('./tools/', {validate : true}).then(console.log);
+// mdLinks('./tools/tool.md', {validate : true}).then(console.log); ruta relativa con un archivo
+// mdLinks("./tools/", {validate : true}).then(console.log); ruta relativa con directorios
+//mdLinks('./tools/reading.word', false).then(console.log); ruta no existe
 
