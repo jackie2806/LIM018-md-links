@@ -3,19 +3,30 @@ const fn = require('../src/small-functions.js');
 
 const mdLinks = (route, options) => {
   const promise =  new Promise((resolve, reject) => {
+    let arrLinks = [];
+    // console.log(arrLinks);
       // Verifica si la ruta existe
     if(!fn.verifyRoute(route)){
       reject(new Error('La ruta no existe, ingrese una ruta válida'));
     } 
     // ¿Es una ruta absoluta?
+    const absolulteRoute = fn.verifyAbsoluteRoute(route);
+    const arrAbsoluteRoute = fn. verifyDirectoryOrFile(absolulteRoute);
+    console.log('ruta', absolulteRoute)
+    if(arrAbsoluteRoute){
+           
+      console.log(fn.obtainLinks(absolulteRoute))
+    }
+    
 
   })    
   return promise;
+  
 }
 
 
-  //mdLinks('./tools/', false).then(console.log)
-mdLinks('./tools/reading.word', false).then(console.log)
+mdLinks('./tools/', false).then(console.log)
+//mdLinks('./tools/reading.word', false).then(console.log) ruta no existe
 
  // ¿Es una ruta absoluta? ---> absoluteRoute verifica ello y si la ruta no es absoluta, pues la convierte a una ruta absoluta
 /*  const absoluteRoute = fn.verifyAbsoluteRoute(route);

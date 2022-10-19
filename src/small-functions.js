@@ -19,20 +19,30 @@ const verifyAbsoluteRoute = (route) => {
   }
 }
 
-// 3. Función que verifica si la ruta es un directorio
+// 3. Función que devuelve la ruta absoluta de un file dentro de un array (si la ruta es un file). 
+// En caso la ruta sea un directorio, lee el directorio y devuelve un array con las rutas de archivos.
 const verifyDirectoryOrFile = (absolutePath) => {
   const verifyFile = (absolutePath) => fs.statSync(absolutePath).isFile();
   if (verifyFile(absolutePath)) {
       return [absolutePath];
     } else  {
       const fileNames = fs.readdirSync(absolutePath);
-      const newFileNames = fileNames.map((file) => verifyDirectoryOrFile(path.join(absolutePath,file))).flat(); 
-      return newFileNames; 
+      const arrFileNames = fileNames.map((file) => verifyDirectoryOrFile(path.join(absolutePath,file))).flat(); 
+      return arrFileNames; 
   } 
  
 }
 
-// 4. Leer los archivos .md y retornar un array de objetos¨
+// 4. Función que verifica si la ruta tiene un archivo con extensión .MD
+const verifyExtensionMd = (absolutePath) => {
+  if (path.extname(absolutePath) === '.md') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// 5. Leer los archivos .md y retornar un array de objetos¨
 /**
  * This function gets a file path with extension .md, then, extracts the content and looks for links
  * @param {string} filePath the path of file to look the content with desired links
@@ -63,7 +73,7 @@ const verifyDirectoryOrFile = (absolutePath) => {
   }
   return arrLinks;
 }
-// 5. Función que devuelve los links que se encontraron dentro de los archivos .md
+// 6. Función que devuelve los links que se encontraron dentro de los archivos .md
 const obtainLinks = (absolutePath) => {
   console.log('o', absolutePath)
   let files = verifyDirectoryOrFile(absolutePath);
@@ -73,14 +83,7 @@ const obtainLinks = (absolutePath) => {
   return links;
 }
 
-// 6. Función que verifica si la ruta tiene un archivo con extensión .MD
-const verifyExtensionMd = (absolutePath) => {
-  if (path.extname(absolutePath) === '.md') {
-    return true;
-  } else {
-    return false;
-  }
-}
+
 // 7. Función que verifica los links
 /**
  * This function checks if the links are broken or not
@@ -137,9 +140,9 @@ module.exports = {
   verifyRoute,
   verifyAbsoluteRoute,
   verifyDirectoryOrFile,
-  readFileWithExtensionMd,
-  obtainLinks,  
   verifyExtensionMd,
+  readFileWithExtensionMd,
+  obtainLinks,    
   checkLinks,
   totalStats,
   brokenStats,

@@ -48,9 +48,22 @@ describe('Function verifies if the route is a directory or a file', () => {
   });
 })
 
-
-
 // ----- TEST 4
+
+describe('Function verifies if the route contains a file with .md extension', () => {
+  it('Should be a function', () => {
+    expect(typeof fn.verifyExtensionMd).toBe('function');
+  });
+  it('Should verify if the route has a file and shows it', () => {
+    const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
+   // const path = require('path');
+   // console.log(fn.verifyExtensionMd(route));
+    expect(fn.verifyExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toBe(true);
+    expect(fn.verifyExtensionMd(route)).toBe(false);
+  })
+})
+
+// ----- TEST 5
 describe('Function extracts the content of file with .md extension and looks for links', () => {
   it('Should be a function', () => {
     expect(typeof fn.readFileWithExtensionMd).toBe('function');
@@ -72,7 +85,7 @@ describe('Function extracts the content of file with .md extension and looks for
   })
 })
 
-// ----- TEST 5
+// ----- TEST 6
 describe('Function obtains the all links after reading each file with .md extension', () =>{
   it('Should be a function', () => {
     expect(typeof fn.obtainLinks).toBe('function');
@@ -93,22 +106,6 @@ describe('Function obtains the all links after reading each file with .md extens
     expect(fn.obtainLinks('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toEqual(arrCheck0);
   })
 })
-// ----- TEST 6
-
-describe('Function verifies if the route contains a file with .md extension', () => {
-  it('Should be a function', () => {
-    expect(typeof fn.verifyExtensionMd).toBe('function');
-  });
-  it('Should verify if the route has a file and shows it', () => {
-    const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
-   // const path = require('path');
-   // console.log(fn.verifyExtensionMd(route));
-    expect(fn.verifyExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toBe(true);
-    expect(fn.verifyExtensionMd(route)).toBe(false);
-  })
-})
-
-
 
 
 // ----- TEST 7
