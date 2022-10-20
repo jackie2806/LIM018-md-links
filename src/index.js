@@ -1,7 +1,6 @@
 //const { checkLinks } = require('./small-functions.js');
 const objFn = require("../src/small-functions.js");
 
-
 const mdLinks = (route, options) => {
   const promise = new Promise((resolve, reject) => {
     let arrLinks = [];
@@ -50,7 +49,7 @@ const mdLinks = (route, options) => {
   });
   return promise;
 };
-mdLinks('./tools/', {validate : true}).then(console.log);
+//mdLinks('./tools/', {validate : true}).then(console.log);
 // mdLinks('./tools/tool.md', {validate : true}).then(console.log); ruta relativa con un archivo
 // mdLinks("./tools/", {validate : true}).then(console.log); ruta relativa con directorios
 //mdLinks('./tools/reading.word', false).then(console.log); ruta no existe

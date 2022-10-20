@@ -48,16 +48,17 @@ const verifyExtensionMd = (absolutePath) => {
  * @param {string} filePath the path of file to look the content with desired links
  * @returns {array} array containing objects with links information
  */
- const readFileWithExtensionMd = (filePath) => {
-  //console.log(fs.readFileSync(absolutePath,'utf-8'))
+ const readFileWithExtensionMd = (filePath) => { 
+  //console.log('Soy una ruta', filePath);
   const arrLinks = [];
+  
   if (filePath !== '') {
     const content = fs.readFileSync(filePath, 'utf-8');
     const http = /(\[(.*?)\])?\(http(.*?)\)/gm;
-    const arrPaths = content.match(http);
-    //console.log(arrPaths)
-    if (filePath !== '' && arrPaths !== null) {
-      arrPaths.map((link) => {
+    const arrFoundLinks = content.match(http);
+    // console.log('Array de Links encontrados', arrFoundLinks);
+    if (filePath !== '' && arrLinks !== null) {
+      arrFoundLinks.map((link) => {
         const text = link.slice(1, link.indexOf(']'));
         const href = link.slice(link.indexOf(']') + 2, link.indexOf(')'));
         const file = filePath;
@@ -71,18 +72,20 @@ const verifyExtensionMd = (absolutePath) => {
     }
 
   }
+  // console.log('Array de objetos', arrObjLinks)
   return arrLinks;
 }
+// console.log(readFileWithExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
 // 6. Función que devuelve los links que se encontraron dentro de los archivos .md
 const obtainLinks = (absolutePath) => {
   //console.log('o', absolutePath)
-  let files = verifyDirectoryOrFile(absolutePath);
-  files = files.filter((file) => path.extname(file) === '.md');
-  const links = files.map((file) => 
+  let arrFiles = verifyDirectoryOrFile(absolutePath);
+  arrFiles = arrFiles.filter((file) => path.extname(file) === '.md');
+  const arrLinks = arrFiles.map((file) => 
     readFileWithExtensionMd(file)).filter((file) => typeof file !== 'string').flat();
-  return links;
-}
+    return arrLinks;
 
+}
 
 // 7. Función que verifica los links
 /**
@@ -93,7 +96,7 @@ const obtainLinks = (absolutePath) => {
 
 const checkLinks = (arrLinks) => {
   const checkedArr = arrLinks.map(links => new Promise((resolve, reject) => {
-    fetch(links.href)
+    fetch(links.href) // petición de consulta
       .then(response => {
         if (response.status >= 200 && response.status < 400) {
           links.status = response.status;
