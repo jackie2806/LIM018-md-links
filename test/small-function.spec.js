@@ -88,7 +88,7 @@ describe('Function extracts the content of file with .md extension and looks for
 // ----- TEST 6
 describe('Function obtains the all links after reading each file with .md extension', () =>{
   it('Should be a function', () => {
-    expect(typeof objFn.obtainLinks).toBe('function');
+    expect(typeof objFn.obtainLinksOfFileOrDirectory).toBe('function');
   });
   it('Should return all links after reading each file with .md extension', () =>{
     const arrCheck0 = [
@@ -103,7 +103,7 @@ describe('Function obtains the all links after reading each file with .md extens
         file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md'
       }
     ];
-    expect(objFn.obtainLinks('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toEqual(arrCheck0);
+    expect(objFn.obtainLinksOfFileOrDirectory('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toEqual(arrCheck0);
   })
 })
 

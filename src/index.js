@@ -27,7 +27,7 @@ const mdLinks = (route, options) => {
         }
       } else {
         // Array con links leídos de  las rutas absolutas que se encontraron dentro de un directorio(solo archivos .md);
-        arrLinks = objFn.obtainLinks(absolulteRoute);
+        arrLinks = objFn.obtainLinksOfFileOrDirectory(absolulteRoute);
       }
     }
     // Array del arreglo con los links

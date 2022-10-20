@@ -76,15 +76,14 @@ const verifyExtensionMd = (absolutePath) => {
   return arrLinks;
 }
 // console.log(readFileWithExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
-// 6. Función que devuelve los links que se encontraron dentro de los archivos .md
-const obtainLinks = (absolutePath) => {
+// 6. Función que devuelve los links que se encontraron dentro de los archivos .md que se encuentran dentro de una carpeta o file
+const obtainLinksOfFileOrDirectory = (absolutePath) => {
   //console.log('o', absolutePath)
   let arrFiles = verifyDirectoryOrFile(absolutePath);
   arrFiles = arrFiles.filter((file) => path.extname(file) === '.md');
   const arrLinks = arrFiles.map((file) => 
     readFileWithExtensionMd(file)).filter((file) => typeof file !== 'string').flat();
     return arrLinks;
-
 }
 
 // 7. Función que verifica los links
@@ -157,7 +156,7 @@ module.exports = {
   verifyDirectoryOrFile,
   verifyExtensionMd,
   readFileWithExtensionMd,
-  obtainLinks,    
+  obtainLinksOfFileOrDirectory,    
   checkLinks,
   totalStats,
   brokenStats,
