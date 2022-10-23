@@ -52,7 +52,7 @@ const mdLinks = (route, options) => {
 //mdLinks('./tools/', {validate : true}).then(console.log);
 // mdLinks('./tools/tool.md', {validate : true}).then(console.log); ruta relativa con un archivo
 // mdLinks("./tools/", {validate : true}).then(console.log); ruta relativa con directorios
-//mdLinks('./tools/reading.word', false).then(console.log); ruta no existe
+// mdLinks('./tools/check/cosmopolitan.txt', {validate :true}).then(console.log)
 
 module.exports = {
   mdLinks,

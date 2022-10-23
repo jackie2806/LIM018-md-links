@@ -14,6 +14,11 @@ describe('mdLinks function', () => {
         });
    });
 
-   it
+   it('Should return a message about the path does not have links with .md extension', () => {
+    return objFn.mdLinks('./tools/reading.txt', {validate: false})
+        .catch((error) => {
+            expect(error.message).toBe('No es un archivo .md')
+        })
+   })
     
 })
