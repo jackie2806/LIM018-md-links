@@ -25,7 +25,7 @@ describe('Function verifies if the route is absolute', () => {
   });
   it('Should verify if the route is absolute', () => {
     const route = 'D:\\Lab\\LIM018-md-links\\tools\\reading.word';
-    expect(objFn.verifyAbsoluteRoute(route)).toBe(true);
+  
     expect(objFn.verifyAbsoluteRoute('./tools/reading.word')).toEqual(route);
   })
 });

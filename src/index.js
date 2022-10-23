@@ -6,7 +6,7 @@ const mdLinks = (route, options) => {
     // Verifica si la ruta existe
     if (!objFn.verifyRoute(route)) {
       reject(new Error("La ruta no existe, ingrese una ruta válida"));
-    }
+    } 
 
     let arrLinks = [];
     //console.log(arrLinks);
@@ -56,7 +56,7 @@ const mdLinks = (route, options) => {
 };
 //mdLinks('./tools/', {validate : true}).then(console.log);
 // mdLinks('./tools/tool.md', {validate : true}).then(console.log); ruta relativa con un archivo
-
+mdLinks('D:\\Lab\\LIM018-md-links\\tools\\tools-files', {validate:false}).then(console.log)
 
 
 module.exports = {
