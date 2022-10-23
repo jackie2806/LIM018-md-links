@@ -57,7 +57,7 @@ const verifyExtensionMd = (absolutePath) => {
     const http = /(\[(.*?)\])?\(http(.*?)\)/gm;
     const arrFoundLinks = content.match(http);
     // console.log('Array de Links encontrados', arrFoundLinks);
-    if (filePath !== '' && arrLinks !== null) {
+    if (filePath !== '' && arrFoundLinks !== null) {
       arrFoundLinks.map((link) => {
         const text = link.slice(1, link.indexOf(']'));
         const href = link.slice(link.indexOf(']') + 2, link.indexOf(')'));
@@ -69,10 +69,10 @@ const verifyExtensionMd = (absolutePath) => {
         }
         arrLinks.push(obj);
       });
-    }
+    } 
 
-  }
-  // console.log('Array de objetos', arrObjLinks)
+  } 
+    // console.log('Array de objetos', arrObjLinks)
   return arrLinks;
 }
 // console.log(readFileWithExtensionMd('D:\\Lab\\LIM018-md-links\\tools\\tool.md'))
