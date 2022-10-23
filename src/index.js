@@ -22,12 +22,18 @@ const mdLinks = (route, options) => {
       if (arrAbsoluteRoute.length === 1) {
         // Array que solo tiene un elemento, que es una ruta absoluta con un file
         if (objFn.verifyExtensionMd(arrAbsoluteRoute[0])) {
-          arrLinks = objFn.readFileWithExtensionMd(arrAbsoluteRoute[0]);
-          console.log("soy", arrLinks);
+          arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute[0]);
+          //console.log("soy", arrLinks);
         } else {
           reject(new Error("No es un archivo .md"));
         }
+      } 
+
+      if(arrAbsoluteRoute.length > 1){
+        //array que tiene varias rutas absolutas con diferentes tipos de archivos
+        arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute);
       }
+
       
       // Array del arreglo con los links
       // Options (validate)
