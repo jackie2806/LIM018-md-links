@@ -20,11 +20,31 @@ describe('mdLinks function', () => {
             expect(error.message).toBe('No es un archivo .md')
         })
    });
-   it('Should return a message: the file does not have links', () => {
+   it('Should return a message: the file does not have any links', () => {
     return objFn.mdLinks('./tools/tooling.md', {validate: false})
         .catch((error) => {
             expect(error.message).toBe('Este archivo no contiene links');
         })
-   })
+   });
+
+   it('Should return an array with paths', () => {
+    const arrOfPaths = [
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node',
+          file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md'
+        },
+        {
+          href: 'https://es.wikipedia.org/wiki/Markdown',
+          text: 'Markdown',
+          file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md'
+        }
+      ];
+    return objFn.mdLinks('./tools/tools-files', {validate:false})
+    .then((response) => {
+        expect(response).toEqual(arrOfPaths)
+    })
+   });
+
     
 })

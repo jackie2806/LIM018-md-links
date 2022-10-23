@@ -12,6 +12,7 @@ const mdLinks = (route, options) => {
     //console.log(arrLinks);
     // ¿Es una ruta absoluta?
     const absolulteRoute = objFn.verifyAbsoluteRoute(route);
+    //console.log(absolulteRoute)
     // Verifico si se trata de un archivo o de un directorio
     const arrAbsoluteRoute = objFn.verifyDirectoryOrFile(absolulteRoute); //Devuelvo un array con
     //console.log("Array Rutas", arrAbsoluteRoute);
@@ -22,19 +23,16 @@ const mdLinks = (route, options) => {
       if (arrAbsoluteRoute.length === 1) {
         // Array que solo tiene un elemento, que es una ruta absoluta con un file
         if (objFn.verifyExtensionMd(arrAbsoluteRoute[0])) {
-          arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute[0]);
+          arrLinks = objFn.readFileWithExtensionMd(arrAbsoluteRoute[0]);
           //console.log("soy", arrLinks);
         } else {
           reject(new Error("No es un archivo .md"));
         }
-      } 
-
-      if(arrAbsoluteRoute.length > 1){
-        //array que tiene varias rutas absolutas con diferentes tipos de archivos
+      } else {
+           //varias rutas absolutas con diferentes tipos de archivos
         arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute);
-      }
-
-      
+      } 
+           
       // Array del arreglo con los links
       // Options (validate)
       // Validate Sí: Validar cada links por medio de peticiones HTTP ->> href, text, file, status, Ok
@@ -58,8 +56,8 @@ const mdLinks = (route, options) => {
 };
 //mdLinks('./tools/', {validate : true}).then(console.log);
 // mdLinks('./tools/tool.md', {validate : true}).then(console.log); ruta relativa con un archivo
-// mdLinks("./tools/", {validate : true}).then(console.log); ruta relativa con directorios
-//mdLinks("./tools/tooling.md", { validate: false }).then(console.log); este archivo .md no contine links
+
+
 
 module.exports = {
   mdLinks,
