@@ -2,8 +2,9 @@ const objFn = require('../src/small-functions.js');
 // const { verifyRoute, typeRoute } = require('../src/index.js');
 /* const verifyRoute = require('../src/index.js');
 const typeRoute = require('../src/index.js'); */
-jest.mock('node-fetch');
 const fetch = require('node-fetch');
+jest.mock('node-fetch');
+
 
 
 // ------ TEST 1
@@ -115,9 +116,8 @@ describe('Function checks if the links are broken', () => {
   it('Should be a function', () => {
     expect(typeof objFn.checkLinks).toBe('function');
   });
-  it.only('Should return a promise: an array with objects with status: 200 and message: OK', () => {
-    const arrCheck1 = [
-   
+  it('Should return a promise: an array with objects with status: 200 and message: OK', () => {
+    const arrCheck1 = [   
       {
         href: 'https://es.wikipedia.org/wiki/Markdown',
         text: 'Markdown',
@@ -137,11 +137,11 @@ describe('Function checks if the links are broken', () => {
     ]
     const obj1 = {
       status: 200,
-      //message: 'OK'     
+      statusText: 'OK'     
     }
     fetch.mockResolvedValue(obj1);
 
-    return objFn.checkLinks(arrCheck1)
+    objFn.checkLinks(arrCheck1)
       .then((response) => {
         expect(response).toEqual(arrCheck11)
     });
@@ -169,7 +169,7 @@ describe('Function checks if the links are broken', () => {
     ]
     const obj2 = {
       status: 'Error',
-      message: 'Fail',      
+      statusText: 'Fail',      
     }
     fetch.mockResolvedValue(obj2); // mock
     return objFn.checkLinks(arrCheck2)
@@ -198,7 +198,7 @@ describe('Function checks if the links are broken', () => {
     
     const obj3 = {
       status : 'Error',
-      message : 'Fail'
+      statusText : 'Fail'
     }
     fetch.mockResolvedValue(obj3);
     return objFn.checkLinks(arrCheck3)

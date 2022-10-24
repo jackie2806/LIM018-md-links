@@ -27,7 +27,7 @@ describe('mdLinks function', () => {
         })
    });
 
-  /*  it('Should return an array with paths', () => {
+    it('Should return an array with paths', () => {
     const arrOfPaths = [
         {
           href: 'https://nodejs.org/es/',
@@ -45,9 +45,9 @@ describe('mdLinks function', () => {
         expect(response).toEqual(arrOfPaths);
         
     })
-   }); */
+   }); 
 
-  /*  it('Should return an array of links if the path is absolute', () => {
+  it('Should return an array of links if the path is absolute', () => {
         const arrLinksObj = [
             {
               href: 'https://nodejs.org/es/',
@@ -65,9 +65,9 @@ describe('mdLinks function', () => {
                 expect(response).toEqual(arrLinksObj);
                 
             })
-   }); */
+   }); 
 
-    /*  it('Should return a promise array  of links validated', () => {
+     it('Should return a promise array  of links validated', (done) => {
     const promiseArr = [
         {
           href: 'https://nodejs.org/es/',
@@ -87,17 +87,21 @@ describe('mdLinks function', () => {
 
       const obj3 = {
         status: 200,
-        message: 'OK'      
+        statusText: 'OK'      
       }
-      fetch.mockResolvedValue(obj3); // mock
+      fetch.mockResolvedValueOnce(obj3);
+      fetch.mockResolvedValueOnce(obj3); 
+      //fetch.mockResolvedValueOnce({status: 200, message: 'ok'});
+// mock
       //console.log('hola', mdLinks('./tools/tools-files', {validate : true}).then(console.log))
-     return objFn.mdLinks('./tools/tools-files',{validate:true})
+      objFn.mdLinks('./tools/tools-files',{validate:true})
         .then((response) => {        
             expect(response).toEqual(promiseArr);
+            done();
             
         }); 
-       
-   });    */
+    
+   });    
 
   /*  test('Should return a promise array  of links validated', async () => {
     const promiseArr = [

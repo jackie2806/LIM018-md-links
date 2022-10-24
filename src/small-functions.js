@@ -94,6 +94,7 @@ const obtainLinksOfFileOrDirectory = (absolutePath) => {
  */
 
 const checkLinks = (arrLinks) => {
+  
   const checkedArr = arrLinks.map(links => new Promise((resolve, reject) => {
     fetch(links.href) // petición de consulta
       .then(response => {
@@ -115,19 +116,17 @@ const checkLinks = (arrLinks) => {
       });
   })
   );
-   const aPromiseOfArrLinks = Promise.all(checkedArr);
+  const aPromiseOfArrLinks = Promise.all(checkedArr);
   return aPromiseOfArrLinks;
 };
-/*  checkLinks([
+/* checkLinks([   
   {
-    href: 'https://www.geeksforgeeks.o/node-js-fs-readfilesync-method/?id=discuss',
-    text: 'Node',
-    file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md',
-    status: 200,
-    message: 'OK'
-  },
+    href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'Markdown',
+    file: 'D:/Lab/LIM018-md-links/tools/tool.md',
   
-]).then(console.log)  */
+  }
+]).then(console.log)  */ 
 //mdLinks('./tools/', {validate : true}).then(console.log);
 
 // 8. Estadísitcas
