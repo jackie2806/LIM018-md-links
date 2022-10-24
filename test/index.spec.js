@@ -46,5 +46,47 @@ describe('mdLinks function', () => {
     })
    });
 
+   it('Should return an array of links if the path is absolute', () => {
+        const arrLinksObj = [
+            {
+              href: 'https://nodejs.org/es/',
+              text: 'Node',
+              file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md'
+            },
+            {
+              href: 'https://es.wikipedia.org/wiki/Markdown',
+              text: 'Markdown',
+              file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md'
+            }
+          ];
+          return objFn.mdLinks('D:\\Lab\\LIM018-md-links\\tools\\tools-files', {validate:false})
+            .then((response) => {
+                expect(response).toEqual(arrLinksObj);
+            })
+   });
+
+    /* it('Should return an array promise of links validated', () => {
+    const promiseArr = [
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node',
+          file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md',
+          status: 200,
+          message: 'OK'
+        },
+        {
+          href: 'https://es.wikipedia.org/wiki/Markdown',
+          text: 'Markdown',
+          file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md',
+          status: 200,
+          message: 'OK'
+        }
+      ]
+    return objFn.mdLinks('./tools/tools-files',{validate:true})
+        .then((response) => {
+            expect(response).toEqual(promiseArr);
+        })
+   });  */
+
     
 })

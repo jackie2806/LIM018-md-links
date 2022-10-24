@@ -17,13 +17,12 @@ const mdLinks = (route, options) => {
     const arrAbsoluteRoute = objFn.verifyDirectoryOrFile(absolulteRoute); //Devuelvo un array con
     //console.log("Array Rutas", arrAbsoluteRoute);
     // console.log(typeof arrAbsoluteRoute)
-    if (arrAbsoluteRoute.length > 0) {
       // verificar si cada elemento del array de rutas absolutas es un archivo .md
 
       if (arrAbsoluteRoute.length === 1) {
         // Array que solo tiene un elemento, que es una ruta absoluta con un file
         if (objFn.verifyExtensionMd(arrAbsoluteRoute[0])) {
-          arrLinks = objFn.readFileWithExtensionMd(arrAbsoluteRoute[0]);
+          arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute[0]);
           //console.log("soy", arrLinks);
         } else {
           reject(new Error("No es un archivo .md"));
@@ -39,8 +38,7 @@ const mdLinks = (route, options) => {
       // Validate No: retorna href, text, file
       if (arrLinks.length === 0) {
         reject(new Error("Este archivo no contiene links"));
-      }
-      if (arrLinks.length > 0) {
+      } else {
         if (options.validate === true) {
           objFn.checkLinks(arrLinks).then((response) => {
             resolve(response);
@@ -50,13 +48,14 @@ const mdLinks = (route, options) => {
           resolve(arrLinks);
         }
       }
-    }
+      
+    
   });
   return promise;
 };
-//mdLinks('./tools/', {validate : true}).then(console.log);
-// mdLinks('./tools/tool.md', {validate : true}).then(console.log); ruta relativa con un archivo
-mdLinks('D:\\Lab\\LIM018-md-links\\tools\\tools-files', {validate:false}).then(console.log)
+//mdLinks('./tools/tool.md', {validate : true}).then(console.log);
+//mdLinks('./tools/tools-files', {validate : true}).then(console.log)
+//mdLinks('D:\\Lab\\LIM018-md-links\\tools\\tools-files', {validate:false}).then(console.log)
 
 
 module.exports = {

@@ -4,6 +4,8 @@ const objFn = require('../src/small-functions.js');
 const typeRoute = require('../src/index.js'); */
 jest.mock('node-fetch');
 const fetch = require('node-fetch');
+
+
 // ------ TEST 1
 describe('Function verifies if the route exists', () => {
   it('Should be a function', () => {
