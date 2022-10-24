@@ -115,9 +115,18 @@ describe('Function checks if the links are broken', () => {
   it('Should be a function', () => {
     expect(typeof objFn.checkLinks).toBe('function');
   });
-  it('Should return a promise: an array with objects with status: 200 and message: OK', () => {
+  it.only('Should return a promise: an array with objects with status: 200 and message: OK', () => {
     const arrCheck1 = [
    
+      {
+        href: 'https://es.wikipedia.org/wiki/Markdown',
+        text: 'Markdown',
+        file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+      
+      }
+    ];
+
+    const arrCheck11 = [
       {
         href: 'https://es.wikipedia.org/wiki/Markdown',
         text: 'Markdown',
@@ -125,16 +134,16 @@ describe('Function checks if the links are broken', () => {
         status: 200,
         message: 'OK'
       }
-    ];
+    ]
     const obj1 = {
       status: 200,
-      message: 'OK',      
+      //message: 'OK'     
     }
     fetch.mockResolvedValue(obj1);
 
     return objFn.checkLinks(arrCheck1)
       .then((response) => {
-        expect(response).toEqual(arrCheck1)
+        expect(response).toEqual(arrCheck11)
     });
   });
 
@@ -145,20 +154,27 @@ describe('Function checks if the links are broken', () => {
         href: 'https://nodejs.or/es/',
         text: 'Node',
         file: 'D:/Lab/LIM018-md-links/tools/tool.md',
-        status: 'Error',
-        message: 'Fail'
       },
         
       
     ];
+    const arrCheck22 = [
+      {
+        href: 'https://nodejs.or/es/',
+        text: 'Node',
+        file: 'D:/Lab/LIM018-md-links/tools/tool.md',
+        status: 'Error',
+        message: 'Fail'
+      },
+    ]
     const obj2 = {
       status: 'Error',
       message: 'Fail',      
     }
-    fetch.mockResolvedValue(obj2);
+    fetch.mockResolvedValue(obj2); // mock
     return objFn.checkLinks(arrCheck2)
         .then((response) => {
-          expect(response).toEqual(arrCheck2)
+          expect(response).toEqual(arrCheck22)
         });
   });
   it('Should be an error with link is not posible to find', () => {
@@ -167,10 +183,19 @@ describe('Function checks if the links are broken', () => {
         href: 'https://www.geeksforgeeks.o/node-js-fs-readfilesync-method/?id=discuss',
         text: 'Node',
         file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md',
-        status: 'Error',
-        message: 'Fail'
+       
       }
     ];
+    
+    const arrCheck33 = [{
+      href: 'https://www.geeksforgeeks.o/node-js-fs-readfilesync-method/?id=discuss',
+      text: 'Node',
+      file: 'D:\\Lab\\LIM018-md-links\\tools\\tool.md',
+      status: 'Error',
+      message: 'Fail'
+    }
+    ];
+    
     const obj3 = {
       status : 'Error',
       message : 'Fail'

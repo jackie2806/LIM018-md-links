@@ -115,8 +115,8 @@ const checkLinks = (arrLinks) => {
       });
   })
   );
-  // const aPromiseOfArrLinks = Promise.all(checkedArr);
-  return Promise.all(checkedArr);
+   const aPromiseOfArrLinks = Promise.all(checkedArr);
+  return aPromiseOfArrLinks;
 };
 /*  checkLinks([
   {
