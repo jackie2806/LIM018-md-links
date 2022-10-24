@@ -172,7 +172,7 @@ describe('Function checks if the links are broken', () => {
       statusText: 'Fail',      
     }
     fetch.mockResolvedValue(obj2); // mock
-    return objFn.checkLinks(arrCheck2)
+    objFn.checkLinks(arrCheck2)
         .then((response) => {
           expect(response).toEqual(arrCheck22)
         });
@@ -201,7 +201,7 @@ describe('Function checks if the links are broken', () => {
       statusText : 'Fail'
     }
     fetch.mockResolvedValue(obj3);
-    return objFn.checkLinks(arrCheck3)
+    objFn.checkLinks(arrCheck3)
       .then((response) => {
         expect(response).toEqual(arrCheck3);
       })    
