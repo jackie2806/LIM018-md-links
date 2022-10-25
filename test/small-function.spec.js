@@ -1,11 +1,8 @@
 const objFn = require('../src/small-functions.js');
 // const { verifyRoute, typeRoute } = require('../src/index.js');
-/* const verifyRoute = require('../src/index.js');
-const typeRoute = require('../src/index.js'); */
+
 const fetch = require('node-fetch');
 jest.mock('node-fetch');
-
-
 
 // ------ TEST 1
 describe('Function verifies if the route exists', () => {
@@ -52,7 +49,6 @@ describe('Function verifies if the route is a directory or a file', () => {
 })
 
 // ----- TEST 4
-
 describe('Function verifies if the route contains a file with .md extension', () => {
   it('Should be a function', () => {
     expect(typeof objFn.verifyExtensionMd).toBe('function');
@@ -109,7 +105,6 @@ describe('Function obtains the all links after reading each file with .md extens
     expect(objFn.obtainLinksOfFileOrDirectory('D:\\Lab\\LIM018-md-links\\tools\\tool.md')).toEqual(arrCheck0);
   })
 })
-
 
 // ----- TEST 7
 describe('Function checks if the links are broken', () => {
