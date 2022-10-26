@@ -1,8 +1,12 @@
 {
-  "name": "md-links",
+  "name": "jackie-mdlinks",
   "scripts": {
     "start": "node src/index.js",
     "test": "jest --coverage"
+  },
+  "bin" : {
+    "md-link" : "src/cli.js"
+      
   },
  
   "devDependencies": {
