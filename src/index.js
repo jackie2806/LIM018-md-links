@@ -22,8 +22,7 @@ const mdLinks = (route, options) => {
           //console.log('Estoy aquí')
           resolve(arrLinks);
         }
-      }
-      
+      }     
     
   });
   return promise;

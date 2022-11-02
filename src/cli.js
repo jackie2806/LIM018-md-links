@@ -42,14 +42,14 @@ switch(args.length){
                     })
                 })
                 .catch((error) => {
-                    console.log('Error');
+                    console.log('Un error, vuelva a intentarlo');
                 })
         } else if (args[1] === '--stats'){
             objFnPrincipal.mdLinks(args[0], {validate: true})
                 .then((resolve) => {
                     //variable de mi estadística
-                    console.log(`Total : ${variable.Total}`)
-                    console.log(`Unique : ${variable.uniqueLinks}`)
+                    console.log(`Total : ${objFnAxuliary.totalStats(resolve)}`)
+                    console.log(`Unique : ${objFnAxuliary.uniqueStats(resolve)}`)
                 });
         }
         break;
@@ -61,11 +61,11 @@ switch(args.length){
         mdLinks(arguments[0], { validate: true })
         .then((resolve) => {
           //variable para traer a funciones stats
-           console.log(`Total : ${statusLinks.Total}`);
-           console.log(`Unique : ${statusLinks.Unique}`);
-           console.log(`Broken : ${statusLinks.Broken}`);
+           console.log(`Total : ${objFnAxuliary.totalStats(resolve)}`);
+           console.log(`Unique : ${objFnAxuliary.uniqueStats(resolve)}`);
+           console.log(`Broken : ${objFnAxuliary.brokenStats(resolve)}`);
         })
-        .catch((err) =>{
+        .catch((error) =>{
           console.log('ha ocurrido un error')
         });  
       };   
