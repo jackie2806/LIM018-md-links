@@ -8,40 +8,9 @@ const mdLinks = (route, options) => {
     if (!objFn.verifyRoute(route)) {
       reject(new Error("La ruta no existe, ingrese una ruta válida"));
     } 
-
-    let arrLinks = [];
-    //console.log(arrLinks);
-    // ¿Es una ruta absoluta?
     const absolulteRoute = objFn.verifyAbsoluteRoute(route);
-    //console.log(absolulteRoute)
-    // Verifico si se trata de un archivo o de un directorio
-    const arrAbsoluteRoute = objFn.verifyDirectoryOrFile(absolulteRoute); //Devuelvo un array con
-    console.log("Array Rutas", arrAbsoluteRoute);
-    // console.log(typeof arrAbsoluteRoute)
-      // verificar si cada elemento del array de rutas absolutas es un archivo .md
-      console.log('Antes del if', arrAbsoluteRoute.length)
-    if (arrAbsoluteRoute.length === 1) {
-        // Array que solo tiene un elemento, que es una ruta absoluta con un file
-     if (objFn.verifyExtensionMd(arrAbsoluteRoute[0])) {
-          console.log('hola', arrAbsoluteRoute[0]);
-          console.log('Aquí', absolulteRoute[0].length)  
-          arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute[0]);
-          //console.log("soy", arrLinks);
-        } else {
-          reject(new Error("No es un archivo .md"));
-        }
-      } 
-      console.log('Aquí estoy', arrAbsoluteRoute.length)   
-        //varias rutas absolutas con diferentes tipos de archivos
-    if(arrAbsoluteRoute.length > 1) {
-            
-        arrLinks = objFn.obtainLinksOfFileOrDirectory(arrAbsoluteRoute);
-      } 
-           
-      // Array del arreglo con los links
-      // Options (validate)
-      // Validate Sí: Validar cada links por medio de peticiones HTTP ->> href, text, file, status, Ok
-      // Validate No: retorna href, text, file
+    const arrLinks = objFn.obtainLinksOfFileOrDirectory(absolulteRoute);
+   
    if (arrLinks.length === 0) {
         reject(new Error("Este archivo no contiene links"));
       } else {

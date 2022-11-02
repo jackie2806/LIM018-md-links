@@ -14,12 +14,12 @@ describe('mdLinks function', () => {
         });
    });
 
-   it('Should return a message: the path does not have a file with .md extension', () => {
+  /*  it('Should return a message: the path does not have a file with .md extension', () => {
     return objFn.mdLinks('./tools/reading.txt', {validate: false})
         .catch((error) => {
             expect(error.message).toBe('No es un archivo .md')
         })
-   });
+   }); */
    it('Should return a message: the file does not have any links', () => {
     return objFn.mdLinks('./tools/tooling.md', {validate: false})
         .catch((error) => {
@@ -103,29 +103,5 @@ describe('mdLinks function', () => {
     
    });    
 
-  /*  test('Should return a promise array  of links validated', async () => {
-    const promiseArr = [
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node',
-          file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md',
-          status: 200,
-          message: 'OK'
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: 'D:\\Lab\\LIM018-md-links\\tools\\tools-files\\letters\\words.md',
-          status: 200,
-          message: 'OK'
-        }
-      ];
-    const data = await objFn.mdLinks('./tools/tools-files', {validate : true});
-    expect(data).toBe(promiseArr);
-  }); */
-  
-  
-  
-
-    
+   
 })
