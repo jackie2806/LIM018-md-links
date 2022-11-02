@@ -30,7 +30,7 @@ switch(args.length){
             });
         })
         .catch((error) => {
-            console.log('Error, verifique los datos ingresados')
+            console.log('Error: el archivo no contiene links')
         })
     break;
     case 2:
